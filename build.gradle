@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+shadowJar {
+    archiveBaseName.set('britannia-bot')
+    archiveVersion.set('1.0')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'org.javakov.Main'
+    }
+}
+
+group = 'org.javakov'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.javakov.Main'
+    }
+}
+
+dependencies {
+    implementation 'org.jsoup:jsoup:1.17.2'
+    implementation 'org.telegram:telegrambots:6.9.7.1'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.json:json:20250107'
+}
+
+test {
+    useJUnitPlatform()
+}
